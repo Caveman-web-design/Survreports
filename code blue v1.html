@@ -78,152 +78,236 @@
         <input type="date" id="date" name="date">
         <br>
         <br>
+
+        <label for="whoreported">Who reported it?:</label>
+        <div style="display:flex;align-items:center;margin-bottom:20px;">
+            <input type="radio" id="jobtitle_supervisor" name="jobtitle" value="Security Supervisor" onclick="showHideJobTitleOther()">
+            <label for="jobtitle_supervisor">Security Supervisor</label>
+            <input type="radio" id="jobtitle_officer" name="jobtitle" value="Security Officer" onclick="showHideJobTitleOther()">
+            <label for="jobtitle_officer">Security Officer</label>
+            <input type="radio" id="surveillance_observed" name="jobtitle" value="surveillance_observed" onclick="showHideJobTitleOther()">
+            <label for="surveillance_observed">Surveillance observed</label>
+            <input type="radio" id="jobtitle_other" name="jobtitle" value="Other" onclick="showHideJobTitleOther()">
+            <label for="jobtitle_other">Other</label>
+        </div>
+        <div id="jobtitle_other_container" style="display: none;">
+            <input type="text" id="jobtitle_other_input" name="jobtitle_other_input" placeholder="Enter job title">
+        </div>
+        <input type="text" id="whoreported" name="whoreported" placeholder="Enter name of person who reported it">
+        <label for="whogothurt">Who got hurt?:</label>
+        <input type="text" id="whogothurt" name="whogothurt" placeholder="a WMA, RoboCop, TM Surveillance Chuck Taylor ">
+      
+        <label for="whohelped">Responding officers:</label>
+        <div style="display:flex;align-items:center;margin-bottom:20px;">
+            <input type="radio" id="jobtitle_supervisor" name="jobtitle_respond" value="Security Supervisor" onclick="showHideJobTitleOther()">
+            <label for="jobtitle_supervisor">Security Supervisor</label>
+            <input type="radio" id="jobtitle_officer" name="jobtitle_respond" value="Security Officer" onclick="showHideJobTitleOther()">
+            <label for="jobtitle_officer">Security Officer</label>
+        </div>
+        <input type="text" id="whohelped" name="whohelped" placeholder="Enter name of officer who responded">
         
-        <br>
-<label for="whoreported">Who reported it?:</label>
-<div style="display:flex;align-items:center;margin-bottom:20px;">
-    <input type="radio" id="jobtitle_supervisor" name="jobtitle" value="Security Supervisor" onclick="showHideJobTitleOther()">
-    <label for="jobtitle_supervisor">Security Supervisor</label>
-    <input type="radio" id="jobtitle_officer" name="jobtitle" value="Security Officer" onclick="showHideJobTitleOther()">
-    <label for="jobtitle_officer">Security Officer</label>
-    <input type="radio" id="jobtitle_other" name="jobtitle" value="Other" onclick="showHideJobTitleOther()">
-    <label for="jobtitle_other">Other</label>
-    <input type="radio" id="surveillance_observed" name="jobtitle" value="surveillance_observed" onclick="showHideJobTitleOther()">
-   <label for="Surveillance observed">Surveillance observed</label>
-</div>
-<div id="jobtitle_other_container" style="display: none;">
-    <input type="text" id="jobtitle_other_input" name="jobtitle_other_input" placeholder="Enter job title">
-</div>
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" placeholder="Enter location of the incident">
 
-    </div>
-</div>
+        <label for="description">Brief description of incident:</label>
+        <input type="text" id="description" name="description" placeholder="Enter a brief description of the incident">
 
-<input type="text" id="whoreported" name="whoreported" placeholder="a WMA, RoboCop, TM Surveillance Chuck Taylor">
-<label for="whogothurt">Who got hurt?:</label>
-<input type="text" id="whogothurt" name="whogothurt" placeholder="a WMA, RoboCop, TM Surveillance Chuck Taylor ">
-<label for="whohelped">Responding officers?:</label>
-<input type="text" id="whohelped" name="whohelped" placeholder="Enter names of responding officers">
-<label for="location">Location:</label>
-<input type="text" id="location" name="location" placeholder="Enter location of the incident">
-    <label for="description">Brief description of incident:</label>
-    <input type="text" id="description" name="description" placeholder="Enter a brief description of the incident">
+        <label for="summary">Summary of incident:</label>
+        <input type="text" id="summary" name="summary" placeholder="Enter a summary of the incident">
 
-    <label for="summary">Summary of incident:</label>
-    <input type="text" id="summary" name="summary" placeholder="Enter a summary of the incident">
+        <label for="medicalcare">Who provided medical care?</label>
+        <input type="text" id="medicalcare" name="medicalcare" placeholder="Leave empty if no one provided medical care">
 
-    <label for="medicalcare">Who provided medical care?</label>
-    <input type="text" id="medicalcare" name="medicalcare" placeholder="Leave empty if no one provided medical care">
+        <label for="medicalrefusal">Did they sign medical paperwork?</label>
+        <input type="radio" id="medicalrefusal_yes" name="medicalrefusal" value="Yes">
+        <label for="medicalrefusal_yes">Yes</label>
+        <input type="radio" id="medicalrefusal_no" name="medicalrefusal" value="No">
+        <label for="medicalrefusal_no">No</label>
+        <label for="timeline">Timeline of events:</label>
 
-    <label for="medicalrefusal">Did they sign medical paperwork?</label>
-    <input type="radio" id="medicalrefusal_yes" name="medicalrefusal" value="Yes">
-    <label for="medicalrefusal_yes">Yes</label>
-    <input type="radio" id="medicalrefusal_no" name="medicalrefusal" value="No">
-    <label for="medicalrefusal_no">No</label>
-
-    <label for="timeline">Timeline of events:</label>
-    <textarea id="timeline" name="timeline" placeholder="Enter the timeline of events here"></textarea><br>
-
-    <input type="button" value="Generate Report" onclick="generateReport()">
+<textarea id="timeline" name="timeline" placeholder="Enter the timeline of events here"></textarea><br>
+<input type="button" value="Generate Report" onclick="generateReport()">
 </form>
-
 <p id="report"></p>
-
 <script>
 function generateReport() {
   // Declare the months array
-  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
 
   // Get values from form
-var date = document.getElementById("date").value;
-var dateObj = new Date(date);
-var month = months[dateObj.getMonth()];
-var day = dateObj.getDate();
-var year = dateObj.getFullYear();
-var formattedDate = month + ' ' + day + ', ' + year;
-  var whoreported = document.getElementById("whoreported").value;
-  var individual = document.getElementById("whogothurt").value;
-  var medicalcare = document.getElementById("medicalcare").value;
-  var whohelped = document.getElementById("whohelped").value;
+  // Get the name of the person who reported the incident
+  var reportedName = document.getElementById("whoreported").value;
+  var reportedArr = reportedName.trim().split(",");
+  var reportedFirstName = reportedArr[0];
+  var reportedLastName = reportedArr[1];
+  var date = document.getElementById("date").value;
+  var dateObj = new Date(date);
+  var month = months[dateObj.getMonth()];
+  var day = dateObj.getDate();
+  var year = dateObj.getFullYear();
+  var formattedDate = month + " " + day + ", " + year;
+  var whogothurtName = document.getElementById("whogothurt").value;
+  var whogothurtArr = whogothurtName.trim().split(" ");
+  var whogothurtFirstName = whogothurtArr[0];
+  var whogothurtLastName = whogothurtArr[1];
+  var whohelpedName = document.getElementById("whohelped").value;
+  var whohelpedArr = whohelpedName.trim().split(",");
+  var whohelpedFirstName = whohelpedArr[0];
+  var whohelpedLastName = whohelpedArr[1];
+  var medicalcareName = document.getElementById("medicalcare").value;
+  var medicalcareArr = medicalcareName.trim().split(",");
+  var medicalcareFirstName = medicalcareArr[0];
+  var medicalcareLastName = medicalcareArr[1] || "";
+  var medicalcare = medicalcareFirstName + " " + medicalcareLastName;
   var location = document.getElementById("location").value;
   var description = document.getElementById("description").value;
   var summary = document.getElementById("summary").value;
   var timeline = document.getElementById("timeline").value;
   var jobtitle = "";
   var jobtitleRadios = document.getElementsByName("jobtitle");
-  
+
   for (var i = 0; i < jobtitleRadios.length; i++) {
-      if (jobtitleRadios[i].checked) {
-          jobtitle = jobtitleRadios[i].value;
-          break;
-      }
+    if (jobtitleRadios[i].checked) {
+      jobtitle = jobtitleRadios[i].value;
+      break;
+    }
   }
 
   if (jobtitle === "Other") {
-      jobtitle = document.getElementById("jobtitle_other_input").value;
+    jobtitle = document.getElementById("jobtitle_other_input").value;
   }
 
   // Set default date to today if date field is empty
   if (date === "") {
-      var today = new Date();
-      var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      var dd = String(today.getDate()).padStart(2, '0');
-      var mm = months[today.getMonth()];
-      var yyyy = today.getFullYear();
-      date = mm + ' ' + dd + ', ' + yyyy;
+    var today = new Date();
+    var months = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = months[today.getMonth()];
+    var yyyy = today.getFullYear();
+    date = mm + " " + dd + ", " + yyyy;
+    month = months[today.getMonth()];
+    day = today.getDate();
+    year = today.getFullYear();
+    formattedDate = month + " " + day + ", " + year;
   }
 
   // Get the selected value for the 'Did they sign medical paperwork?' radio buttons
   var medicalrefusal = "";
   var medicalrefusalRadio = document.getElementsByName("medicalrefusal");
-  
+
   for (var i = 0; i < medicalrefusalRadio.length; i++) {
-      if (medicalrefusalRadio[i].checked) {
-          medicalrefusal = medicalrefusalRadio[i].value;
-          break;
-      }
+    if (medicalrefusalRadio[i].checked) {
+      medicalrefusal = medicalrefusalRadio[i].value;
+      break;
+    }
   }
 
+  // Get the name of the person who reported the incident
+  var reportedName = document.getElementById("whoreported").value;
+  var reportedArr = reportedName.trim().split(' ');
+  var reportedFirstName = reportedArr[0];
+  var reportedLastName = reportedArr.length > 1 ? reportedArr[1] : "";
+
+  // Get the name of the person who got hurt
+  var injuredName = document.getElementById("whogothurt").value;
+  var injuredArr = injuredName.trim().split(" ");
+  var injuredFirstName = injuredArr[0];
+  var injuredLastName = injuredArr.length > 1 ? injuredArr[1] : "";
+  
+  // Get the names of the responding officers
+  var officersName = document.getElementById("whohelped").value;
+  var officersArr = officersName.trim().split(",");
+  var officersFirstNames = [];
+  var officersLastNames = [];
+
+  for (var i = 0; i < officersArr.length; i++) {
+    var officerNameArr = officersArr[i].trim().split(" ");
+    officersFirstNames.push(officerNameArr[0]);
+    officersLastNames.push(officerNameArr[1]);
+  } 
   // Create additional text based on the selected radio button value
   var additionalText = "";
-  
+
   if (medicalrefusal === "Yes") {
-      additionalText = "The individual signed the medical paperwork.";
+    additionalText = "The individual signed the medical paperwork.";
   } else if (medicalrefusal === "No") {
-      additionalText = "The individual did not sign the medical paperwork.";
+    additionalText = "The individual did not sign the medical paperwork.";
   }
 
-  // Split the timeline into individual events
-  var events = timeline.split('\n');
-  var timelineStr = "";
+    // Split the timeline into individual events
+    var events = timeline.split('\n');
+    var timelineStr = "";
+
+    for (var i = 0; i < events.length; i++) {
+        var eventTime = events[i].split(' ')[0];
+        var eventDescription = events[i].substring(eventTime.length + 1);
+        timelineStr += eventTime + ": " + eventDescription + "<br>";
+    }
+
+// Get the first and last name of the person who reported the incident
+var reportedName = document.getElementById("whoreported").value;
+var reportedArr = reportedName.trim().split(',');
+var reportedFirstName = reportedArr[0];
+var reportedLastName = reportedArr.length > 1 ? reportedArr[1] : "";
+
+// Generate report
+var report = "";
+
+// Generate report
+if (document.getElementById("surveillance_observed").checked) {
+    report = "On " + formattedDate + ", Surveillance observed a medical incident involving " + injuredFirstName + " " + injuredLastName + " at " + location + ". " + injuredFirstName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + injuredFirstName + " " + summary + " " + location + ".";
+} else {
+    report = "On " + formattedDate + ", " + jobtitle + " " + reportedFirstName + " " + reportedLastName + " informed Surveillance of a medical incident involving " + injuredFirstName + " " + injuredLastName + " at " + location + ". " + injuredFirstName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + injuredFirstName + " " + summary + " " + location + ".";
+}
+
+// Add Video information to report
+report += "<br><br>Video (Code Blue " + whogothurtFirstName + " " + whogothurtLastName + ")";
+
   
-  for (var i = 0; i < events.length; i++) {
-      var eventTime = events[i].split(' ')[0];
-      var eventDescription = events[i].substring(eventTime.length + 1);
-      timelineStr += eventTime + ": " + eventDescription + "<br>";
-  }
+// Append names of responding officers to report
+for (var i = 0; i < officersFirstNames.length; i++) {
+  report += "<br><br>" + officersFirstNames[i] + " " + officersLastNames[i] + " responded to the incident.";
+}
 
-        // Generate report
-        var report = "";
+// Append medical care info to report if provided
+if (medicalcare !== "") {
+    report += "<br><br>" + medicalcare + " provided medical care to " + injuredFirstName + " " + injuredLastName + ".";
+}
 
-        if (document.getElementById("surveillance_observed").checked) {
-            report = "On " + date + ", Surveillance observed a medical incident involving " + individual + " at " + location + ". " + individual + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + individual + " " + summary + " " + location + ".";
-        } else {
-            report = "On " + formattedDate + ", " + jobtitle + " " + whoreported + " informed Surveillance of a medical incident involving " + individual + " at " + location + ". " + individual + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + individual + " " + summary + " " + location + ".";
-        }
+// Append additional text based on the selected radio button value
+report += "<br><br>" + additionalText;
 
-        // Append medical care info to report if provided
-        if (medicalcare !== "") {
-            report += "<br><br>" + medicalcare + " provided medical care to " + individual + ".";
-        }
+// Append closing statement to report
+report += "<br><br>No further information was given to Surveillance. Incident Report complete. Video saved. Nothing follows.";
 
-        // Append additional text based on the selected radio button value
-        report += "<br><br>" + additionalText;
-
-        // Append closing statement to report
-        report += "<br><br>No further information was given to Surveillance. Incident Report complete. Video saved. Nothing follows.";
-
-        // Display report
-        document.getElementById("report").innerHTML = report;
+// Display report
+document.getElementById("report").innerHTML = report;
     }
 </script>
 </body>
