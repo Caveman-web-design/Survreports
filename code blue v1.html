@@ -1,74 +1,98 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <title>Incident Report Form</title>
-    <style>
-        body {
-            text-align: Left;
-            font-family: Arial, sans-serif;
-            background-color: #f1f1f1;
-        }
+	<meta charset="utf-8">
+	<title>Incident Report Form</title>
+	<style>
+		body {
+			font-family: 'Roboto', sans-serif;
+			background-color: #f7f7f7;
+		}
 
-        form {
-            text-align: Left;
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+		form {
+			max-width: 600px;
+			margin: 0 auto;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 10px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
 
-        h1 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+		h1 {
+			text-align: center;
+			font-size: 36px;
+			margin-bottom: 20px;
+		}
 
-        label {
-            display: block;
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+		label {
+			display: block;
+			font-size: 20px;
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
 
-        input[type="text"],
-        textarea {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 5px;
-            border: none;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
+		input[type="text"],
+		textarea {
+			width: 100%;
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: none;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+			box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+		}
 
-        input[type="button"] {
-            background-color: #4CAF50;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+		input[type="button"] {
+			background-color: #4CAF50;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			font-size: 16px;
+			border-radius: 5px;
+			cursor: pointer;
+		}
 
-        input[type="button"]:hover {
-            background-color: #3e8e41;
-        }
+		input[type="button"]:hover {
+			background-color: #3e8e41;
+		}
 
-        #report {
-            margin-top: 20px;
-            font-size: 16px;
-            line-height: 1.5;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-        }
+		#report {
+			margin-top: 20px;
+			font-size: 16px;
+			line-height: 1.5;
+			background-color: #fff;
+			padding: 20px;
+			border-radius: 5px;
+			box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+		}
 
-    </style>
+		/* Radio button styling */
+		.radio-container {
+			display: flex;
+			align-items: center;
+			margin-bottom: 20px;
+		}
+
+		.radio-container label {
+			margin-right: 10px;
+			font-size: 16px;
+		}
+
+		.radio-container input[type="radio"] {
+			margin-right: 5px;
+			cursor: pointer;
+		}
+
+		/* Job title input field styling */
+		#jobtitle_other_container {
+			margin-bottom: 20px;
+		}
+
+		#jobtitle_other_input {
+			margin-top: 10px;
+		}
+	</style>
 </head>
 
 <body>
@@ -107,7 +131,7 @@
         <input type="text" id="whohelped" name="whohelped" placeholder="Enter name of officer who responded">
         
         <label for="location">Location:</label>
-        <input type="text" id="location" name="location" placeholder="Enter location of the incident">
+        <input type="text" id="location" name="location" placeholder="at the Hotel, in the Bar, in Zone 2">
 
         <label for="description">Brief description of incident:</label>
         <input type="text" id="description" name="description" placeholder="slipped and fell, cut her hand, forgot how to sit">
@@ -286,7 +310,7 @@ if (document.getElementById("surveillance_observed").checked) {
 }
 
 // Video
-report += "<br><br>Video (Code Blue " + whogothurtFirstName + " " + whogothurtLastName + ")";  
+report += "<br>Video (Code Blue " + whogothurtFirstName + " " + whogothurtLastName + ")";  
   
 // Surveillance Observed
 report += "<br><br> Surveillance observed " + injuredLastName + " " + summary + " " + location + ".";
@@ -294,7 +318,7 @@ report += "<br><br> Surveillance observed " + injuredLastName + " " + summary + 
   
 // Append names of responding officers to report
 if (officersFirstNames.length > 0) {
-    report += "<br><br>";
+    report += " ";
     for (var i = 0; i < officersFirstNames.length; i++) {
         report += officersFirstNames[i] + " " + officersLastNames[i] + ", ";
     }
@@ -303,14 +327,14 @@ if (officersFirstNames.length > 0) {
 
 // Append medical care info to report if provided
 if (medicalcare !== "") {
-    report += "<br><br>" + medicalcare + " provided medical care to " + injuredFirstName + " " + injuredLastName + ".";
+    report += " " + medicalcare + " provided medical care to " + injuredLastName + ".";
 }
 
 // Append additional text based on the selected radio button value
 report += "<br><br>" + additionalText;
 
 // Append closing statement to report
-report += "<br><br>No further information was given to Surveillance.<br><br>Incident Report complete. Video saved. Nothing follows.";
+report += " No further information was given to Surveillance.<br><br>Incident Report complete. Video saved. Nothing follows.";
 
 // Display report
 document.getElementById("report").innerHTML = report;
