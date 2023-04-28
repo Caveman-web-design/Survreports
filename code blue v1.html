@@ -325,9 +325,8 @@ if (officersFirstNames.length > 0) {
     report += " responded to the incident.";
 }
 
-// Append medical care info to report if provided
-if (medicalcare !== "") {
-    report += " " + medicalcare + " provided medical care to " + injuredLastName + ".";
+if (medicalcare && medicalcare.trim() !== "" && injuredLastName) {
+    report += " " + medicalcare.trim() + " provided medical care to " + injuredLastName + ".";
 }
 
 // Append additional text based on the selected radio button value
