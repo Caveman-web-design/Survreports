@@ -255,9 +255,9 @@ function generateReport() {
   var additionalText = "";
 
   if (medicalrefusal === "Yes") {
-    additionalText = "The individual signed the medical paperwork.";
+    additionalText = whogothurtLastName + " signed medical paperwork.";
   } else if (medicalrefusal === "No") {
-    additionalText = "The individual did not sign the medical paperwork.";
+    additionalText = whogothurtLastName + " did not sign medical paperwork.";
   }
 
     // Split the timeline into individual events
@@ -279,20 +279,26 @@ var reportedLastName = reportedArr.length > 1 ? reportedArr[1] : "";
 // Generate report
 var report = "";
 
-// Generate report
 if (document.getElementById("surveillance_observed").checked) {
-    report = "On " + formattedDate + ", Surveillance observed a medical incident involving " + injuredFirstName + " " + injuredLastName + " at " + location + ". " + injuredFirstName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + injuredFirstName + " " + summary + " " + location + ".";
+    report = "On " + formattedDate + ", Surveillance observed a medical incident involving " + injuredFirstName + " " + injuredLastName + " " + location + ". " + injuredFirstName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>";
 } else {
-    report = "On " + formattedDate + ", " + jobtitle + " " + reportedFirstName + " " + reportedLastName + " informed Surveillance of a medical incident involving " + injuredFirstName + " " + injuredLastName + " at " + location + ". " + injuredFirstName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>Surveillance observed " + injuredFirstName + " " + summary + " " + location + ".";
+    report = "On " + formattedDate + ", " + jobtitle + " " + reportedFirstName + " " + reportedLastName + " informed Surveillance of a medical incident involving " + injuredFirstName + " " + injuredLastName + " " + location + ". " + injuredLastName + " " + description + ". The following is a timeline of events, all times are approximate. <br><br>" + timelineStr + "<br>";
 }
 
-// Add Video information to report
-report += "<br><br>Video (Code Blue " + whogothurtFirstName + " " + whogothurtLastName + ")";
-
+// Video
+report += "<br><br>Video (Code Blue " + whogothurtFirstName + " " + whogothurtLastName + ")";  
+  
+// Surveillance Observed
+report += "<br><br> Surveillance observed " + injuredLastName + " " + summary + " " + location + ".";
+ 
   
 // Append names of responding officers to report
-for (var i = 0; i < officersFirstNames.length; i++) {
-  report += "<br><br>" + officersFirstNames[i] + " " + officersLastNames[i] + " responded to the incident.";
+if (officersFirstNames.length > 0) {
+    report += "<br><br>";
+    for (var i = 0; i < officersFirstNames.length; i++) {
+        report += officersFirstNames[i] + " " + officersLastNames[i] + ", ";
+    }
+    report += " responded to the incident.";
 }
 
 // Append medical care info to report if provided
@@ -304,7 +310,7 @@ if (medicalcare !== "") {
 report += "<br><br>" + additionalText;
 
 // Append closing statement to report
-report += "<br><br>No further information was given to Surveillance. Incident Report complete. Video saved. Nothing follows.";
+report += "<br><br>No further information was given to Surveillance.<br><br>Incident Report complete. Video saved. Nothing follows.";
 
 // Display report
 document.getElementById("report").innerHTML = report;
