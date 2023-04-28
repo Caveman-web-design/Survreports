@@ -95,7 +95,7 @@
         </div>
         <input type="text" id="whoreported" name="whoreported" placeholder="Enter name of person who reported it">
         <label for="whogothurt">Who got hurt?:</label>
-        <input type="text" id="whogothurt" name="whogothurt" placeholder="a WMA, RoboCop, TM Surveillance Chuck Taylor ">
+        <input type="text" id="whogothurt" name="whogothurt" placeholder="a WMA, a BFA, TMChuck Taylor,">
       
         <label for="whohelped">Responding officers:</label>
         <div style="display:flex;align-items:center;margin-bottom:20px;">
@@ -110,10 +110,10 @@
         <input type="text" id="location" name="location" placeholder="Enter location of the incident">
 
         <label for="description">Brief description of incident:</label>
-        <input type="text" id="description" name="description" placeholder="Enter a brief description of the incident">
+        <input type="text" id="description" name="description" placeholder="slipped and fell, cut her hand, forgot how to sit">
 
         <label for="summary">Summary of incident:</label>
-        <input type="text" id="summary" name="summary" placeholder="Enter a summary of the incident">
+        <input type="text" id="summary" name="summary" placeholder="Surveillance observed individual...">
 
         <label for="medicalcare">Who provided medical care?</label>
         <input type="text" id="medicalcare" name="medicalcare" placeholder="Leave empty if no one provided medical care">
@@ -125,7 +125,7 @@
         <label for="medicalrefusal_no">No</label>
         <label for="timeline">Timeline of events:</label>
 
-<textarea id="timeline" name="timeline" placeholder="Enter the timeline of events here"></textarea><br>
+<textarea id="timeline" name="timeline" placeholder="0102.03 a man walks into a bar"></textarea><br>
 <input type="button" value="Generate Report" onclick="generateReport()">
 </form>
 <p id="report"></p>
@@ -260,16 +260,16 @@ function generateReport() {
     additionalText = whogothurtLastName + " did not sign medical paperwork.";
   }
 
-    // Split the timeline into individual events
-    var events = timeline.split('\n');
-    var timelineStr = "";
+// Split the timeline into individual events
+var events = timeline.split('\n');
+var timelineStr = "<b>" + month + " " + day + ", " + year + "</b><br>";
 
-    for (var i = 0; i < events.length; i++) {
-        var eventTime = events[i].split(' ')[0];
-        var eventDescription = events[i].substring(eventTime.length + 1);
-        timelineStr += eventTime + ": " + eventDescription + "<br>";
-    }
-
+for (var i = 0; i < events.length; i++) {
+    var eventTime = events[i].split(' ')[0];
+    var eventDescription = events[i].substring(eventTime.length + 1);
+    timelineStr += eventTime + " " + eventDescription + "<br>";
+}
+  
 // Get the first and last name of the person who reported the incident
 var reportedName = document.getElementById("whoreported").value;
 var reportedArr = reportedName.trim().split(',');
